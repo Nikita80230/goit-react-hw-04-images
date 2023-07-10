@@ -1,42 +1,39 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import css from './Searchbar.module.css';
 
-export class Searchbar extends Component {
-    state = {
-        valueToFind: '',
+export const Searchbar = ({ onSubmit }) => {
+    const [valueToFind, setValueToFind] = useState('');
+    // state = {
+    //     valueToFind: '',
+    // };
+
+    const onHandleChange = event => {
+        setValueToFind(event.target.value);
     };
 
-    onHandleChange = event => {
-        this.setState({
-            valueToFind: event.target.value,
-        });
-    };
-
-    onHandleSubmit = event => {
+    const onHandleSubmit = event => {
         event.preventDefault();
-        this.props.onSubmit(this.state.valueToFind);
+        onSubmit(valueToFind);
     };
 
-    render() {
-        return (
-            <header className={css.Searchbar}>
-                <form className={css.SearchForm} onSubmit={this.onHandleSubmit}>
-                    <button className={css.SearchFormButton} type="submit">
-                        <span>Search</span>
-                    </button>
+    return (
+        <header className={css.Searchbar}>
+            <form className={css.SearchForm} onSubmit={onHandleSubmit}>
+                <button className={css.SearchFormButton} type="submit">
+                    <span>Search</span>
+                </button>
 
-                    <input
-                        onChange={this.onHandleChange}
-                        value={this.state.valueToFind}
-                        name="input"
-                        className={css.SearchFormInput}
-                        type="text"
-                        autoComplete="off"
-                        autoFocus
-                        placeholder="Search images and photos"
-                    />
-                </form>
-            </header>
-        );
-    }
-}
+                <input
+                    onChange={onHandleChange}
+                    value={valueToFind}
+                    name="input"
+                    className={css.SearchFormInput}
+                    type="text"
+                    autoComplete="off"
+                    autoFocus
+                    placeholder="Search images and photos"
+                />
+            </form>
+        </header>
+    );
+};

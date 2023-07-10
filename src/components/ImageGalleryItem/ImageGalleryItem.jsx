@@ -1,14 +1,11 @@
-import { Component } from 'react';
+
 import css from "./ImageGalleryItem.module.css"
 
-export class ImageGalleryItem extends Component {
-    render() {
-        const { webformatURL, largeImageURL } = this.props;
+export const ImageGalleryItem = ({ webformatURL, largeImageURL, onOpenModal }) => {
 
-        return (
-            <li>
-                <img className={css.galleryItemImg} onClick={() => { this.props.onOpenModal(largeImageURL) }} src={webformatURL} alt={largeImageURL} />
-            </li>
-        );
-    }
+    return (
+        <li>
+            <img className={css.galleryItemImg} onClick={() => { onOpenModal(largeImageURL) }} src={webformatURL} alt={largeImageURL} />
+        </li>
+    );
 }
