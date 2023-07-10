@@ -69,7 +69,7 @@ export const App = () => {
   return (
     <div className={css.App}>
       <Searchbar onSubmit={onSubmit} />
-      <ImageGallery photosArray={photosArray} onOpenModal={onOpenModal} />
+      <ImageGallery photosArray={photosArray} error={error} onOpenModal={onOpenModal} />
       {isLoading && <Loader />}
       {photosArray.length !== 0 && <Button onLoadMoreClick={onLoadMoreClick} />}
       {modal.isOpen && (
